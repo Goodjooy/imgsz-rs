@@ -1,7 +1,7 @@
 mod png;
 use std::io::Read;
 use std::io::{self, Seek};
-
+#[cfg(feature="use-img")]
 use image::ImageFormat;
 
 use crate::{error, ImageInfo};
@@ -16,6 +16,7 @@ pub enum Format {
     Unsupported,
 }
 
+#[cfg(feature="use-img")]
 impl From<ImageFormat> for Format {
     fn from(f: ImageFormat) -> Self {
         match f {

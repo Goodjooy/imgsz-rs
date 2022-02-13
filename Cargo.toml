@@ -5,8 +5,16 @@ edition = "2021"
 license-file="./COPYING"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default=["use-img"]
+# 使用 image crate 来辅助解析图片
+use-img=["image"]
+
+
 [dependencies]
 byteorder = "1"
 
 [dependencies.image]
 version="0.24"
+optional=true
