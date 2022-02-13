@@ -1,3 +1,5 @@
+use std::io::{BufRead, Seek};
+
 use image::ImageFormat;
 
 pub enum Format {
@@ -19,4 +21,14 @@ impl From<ImageFormat> for Format {
             _ => Self::Unsupported,
         }
     }
+}
+
+pub(crate) trait LoadImgInfo {
+    type Result: ImgInfo;
+    fn load<R: BufRead + Seek>(reader: &mut R) -> Option<Self::Result>;
+}
+
+pub(crate) trait ImgInfo {
+    fn size(&self) -> (usize, usize);
+    fn format(&self) -> Format;
 }
