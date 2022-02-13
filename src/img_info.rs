@@ -1,7 +1,8 @@
 use std::io::{BufRead, Seek};
 
-use crate::{error::Error, Format, ImgResult};
+use crate::{decoders::ImageSize, error::Error, Format, ImgResult};
 
+#[derive(Debug, Clone)]
 pub struct ImageInfo {
     pub size: (usize, usize),
     pub format: Format,
@@ -16,5 +17,12 @@ impl ImageInfo {
             size: (size.0 as usize, size.1 as usize),
             format,
         })
+    }
+
+    pub(crate) fn new(format: Format, img: impl ImageSize) -> Self {
+        Self {
+            size: img.size(),
+            format,
+        }
     }
 }

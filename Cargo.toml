@@ -5,6 +5,8 @@ edition = "2021"
 license-file="./COPYING"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+byteorder = "1"
 
 [dependencies.image]
 version="0.24"
