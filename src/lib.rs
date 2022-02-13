@@ -1,11 +1,14 @@
+mod img_info;
+mod decoders;
 pub mod error;
 use std::{
     io::{BufRead, Seek},
     path::Path,
 };
 
-mod img_info;
 
+
+pub use decoders::Format;
 pub use img_info::ImageInfo;
 pub struct ImageInfoLoader;
 pub type ImgResult<T> = Result<T, error::Error>;
