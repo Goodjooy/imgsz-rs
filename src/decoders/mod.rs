@@ -1,9 +1,10 @@
+mod gif;
 mod png;
-use std::io::SeekFrom;
-use std::io::Read;
-use std::io::{self, Seek};
-#[cfg(feature="use-img")]
+#[cfg(feature = "use-img")]
 use image::ImageFormat;
+use std::io::Read;
+use std::io::SeekFrom;
+use std::io::{self, Seek};
 
 use crate::{error, ImageInfo};
 
@@ -17,7 +18,7 @@ pub enum Format {
     Unsupported,
 }
 
-#[cfg(feature="use-img")]
+#[cfg(feature = "use-img")]
 impl From<ImageFormat> for Format {
     fn from(f: ImageFormat) -> Self {
         match f {
@@ -57,7 +58,7 @@ pub(crate) enum LoadStatus<T> {
 }
 
 macro_rules! format_load_fn {
-    [$($it:ty)*] => {
+    [$($it:ty),*] => {
         pub(crate) fn imgsz<R: Read + Seek>(reader: &mut R) -> Result<ImageInfo, error::Error> {
             $(
                 let loaded = <$it as LoadImgInfo>::load(reader)?;
@@ -79,4 +80,4 @@ macro_rules! format_load_fn {
     };
 }
 
-format_load_fn![png::Png];
+format_load_fn![png::Png, gif::Gif];
