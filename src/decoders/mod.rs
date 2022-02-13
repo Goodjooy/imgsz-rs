@@ -1,4 +1,5 @@
 mod png;
+use std::io::SeekFrom;
 use std::io::Read;
 use std::io::{self, Seek};
 #[cfg(feature="use-img")]
@@ -69,6 +70,8 @@ macro_rules! format_load_fn {
                         return Err(error::Error::Other(format!("Decoder Error[{}] : {}",stringify!($it), err)))
                     }
                 }
+
+                reader.seek(SeekFrom::Start(0))?;
             )*
 
             Err(error::Error::Format)
