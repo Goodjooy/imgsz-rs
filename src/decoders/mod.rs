@@ -1,4 +1,5 @@
 mod gif;
+mod jpeg;
 mod png;
 #[cfg(feature = "use-img")]
 use image::ImageFormat;
@@ -80,4 +81,4 @@ macro_rules! format_load_fn {
     };
 }
 
-format_load_fn![png::Png, gif::Gif];
+format_load_fn![png::Png, gif::Gif, jpeg::Jpeg];
