@@ -1,6 +1,7 @@
 mod gif;
 mod jpeg;
 mod png;
+mod webp;
 #[cfg(feature = "use-img")]
 use image::ImageFormat;
 use std::io::Read;
@@ -81,4 +82,4 @@ macro_rules! format_load_fn {
     };
 }
 
-format_load_fn![png::Png, gif::Gif, jpeg::Jpeg];
+format_load_fn![png::Png, gif::Gif, jpeg::Jpeg, webp::WebP];

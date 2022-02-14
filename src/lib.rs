@@ -35,3 +35,15 @@ impl ImageInfoLoader {
         decoders::imgsz(reader)
     }
 }
+
+#[cfg(test)]
+mod t{
+    use crate::ImageInfoLoader;
+
+    #[test]
+    fn name() {
+        let res=ImageInfoLoader::from_file(r#"E:\Users\asus\Pictures\QQ图片20210517181951.webp"#);
+
+        println!("{:?}",res);
+    }
+}

@@ -7,7 +7,7 @@ license-file="./COPYING"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-default=["use-img"]
+default=[]
 # 使用 image crate 来辅助解析图片
 use-img=["image"]
 

@@ -26,6 +26,10 @@ impl LoadImgInfo for Jpeg {
 
         reader.read_exact(&mut buf)?;
 
+        if buf != [0xff, 0xd8] {
+            return Ok(LoadStatus::Not);
+        }
+
         while buf != [0xff, 0xc0] {
             reader.read_exact(&mut buf)?;
         }
