@@ -2,8 +2,7 @@ mod gif;
 mod jpeg;
 mod png;
 mod webp;
-#[cfg(feature = "use-img")]
-use image::ImageFormat;
+
 use std::io::Read;
 use std::io::SeekFrom;
 use std::io::{self, Seek};
@@ -20,18 +19,6 @@ pub enum Format {
     Unsupported,
 }
 
-#[cfg(feature = "use-img")]
-impl From<ImageFormat> for Format {
-    fn from(f: ImageFormat) -> Self {
-        match f {
-            ImageFormat::Png => Self::Png,
-            ImageFormat::Jpeg => Self::Jpeg,
-            ImageFormat::Gif => Self::Gif,
-            ImageFormat::WebP => Self::Webp,
-            _ => Self::Unsupported,
-        }
-    }
-}
 
 pub(crate) trait LoadImgInfo {
     type Result: ImageSize;
