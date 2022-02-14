@@ -1,5 +1,3 @@
-
-
 #[derive(Debug, Clone)]
 pub struct ImageInfo {
     pub size: (usize, usize),
@@ -12,5 +10,13 @@ impl ImageInfo {
             size: img.size(),
             format,
         }
+    }
+
+    pub fn width(&self) -> usize {
+        self.size.0
+    }
+
+    pub fn height(&self) -> usize {
+        self.size.1
     }
 }
